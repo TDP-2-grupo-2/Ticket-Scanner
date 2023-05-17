@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "sourse",
-    "slug": "sourse",
+    "name": "TicketApp-Scanner",
+    "slug": "TicketAppScanner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "ticketappscanner",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -15,9 +16,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.TicketAppScanner.AppMobile"
+
     },
     "android": {
+      "package": "com.TicketAppScanner.AppMobile",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +29,19 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1fd3bdb9-e47f-4537-ad58-3fd971ff1d39"
+      }
+    },
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "TicketApp necesita acceder a tu camara para leer las entradas"
+        }
+      ]
+    ]
   }
 }
