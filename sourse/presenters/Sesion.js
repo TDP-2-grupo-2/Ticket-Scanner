@@ -23,8 +23,8 @@ async function envioCredenciales(email, nombre){
     const jsonResponse = await axios.post(
         `${AppConstants.API_URL}/organizers/loginGoogle`,
         {
-          email: 'asegura@fi.uba.ar',
-          name:'Agustina Segura',
+          email: 'rsanchez@fi.uba.ar',
+          name:'Ramiro Sanchez',
         },
     );
 
@@ -51,11 +51,11 @@ export async function  signIn(setCredentials) {
         let email = userInfo.user.email;
         let name = userInfo.user.givenName +' '+ userInfo.user.familyName;
         let token = await envioCredenciales(userInfo.user.email, name);
-        let credentials = {email: 'asegura@fi.uba.ar',
-        name:'Agustina Segura',
+        let credentials = {email:email,// 'asegura@fi.uba.ar',
+        name:name,//'Agustina Segura',
         photo:userInfo.user.photo, 
         token:token
-}
+        }
         return credentials;
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {

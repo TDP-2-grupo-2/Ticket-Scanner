@@ -17,7 +17,7 @@ export const LogginScreen = () => {
     const onPressButton = async ()=> {
 
       let credentials = await signIn();
-      console.log(credentials);
+      // console.log(credentials);
       setAuthenticated(credentials);
     }
   return (

@@ -10,29 +10,9 @@ import { useContext } from "react";
 export async function validateTicket(token, event_id, ticket_id, setSuccces, setError, setErrorMessage ){
         
     
-    console.log(event_id);
-    console.log(ticket_id);
-    console.log(token)
-    // const paramsLogin = {
-    //     method: "PATCH",
-    //     headers: {
-    //         'Authorization': `Bearer ${token}`,
-    //     },
-
-    // };
-    // const url = `${AppConstants.API_URL}/organizers/events/${event_id}/ticket_validation/${ticket_id}`
-    // const response = await fetch(
-    //     url,
-    //     paramsLogin
-    // );
-    // const jsonResponse = await response.json();
-    // if (response.status === 200){
-    //     setSuccces(true)
-    // }
-    // else{
-    //     setError(true);
-    //      console.log(response)
-    // }
+    
+    // console.log(ticket_id);
+    // console.log(token)
 
     
     const jsonResponse = await axios.patch(
@@ -48,12 +28,38 @@ export async function validateTicket(token, event_id, ticket_id, setSuccces, set
       })
       .catch(function (error) {
         setError(true);
-        console.log(error.response.data)
         setErrorMessage(error.response.data.detail);
       })
 
 
 }
+
+
+export async function getEventMetrics(token, event_id, setSuccces ){
+    
+  console.log(event_id);
+  console.log(token)
+  
+  const jsonResponse = await axios.get(
+    
+      `${AppConstants.API_URL}/organizers/events/${event_id}/statistics`,
+      
+        {
+          headers: {'Authorization':`Bearer ${token}`
+                  
+            }
+        },
+  )  .then(function (response) {
+      console.log(response.data.message)
+      setSuccces(response.data.message)
+    })
+    .catch(function (error) {
+      
+      console.log(error.response)
+      
+    })
+}
+
 
 export function isValidMongoId(id) {
     const regex = /^[0-9a-fA-F]{24}$/;
